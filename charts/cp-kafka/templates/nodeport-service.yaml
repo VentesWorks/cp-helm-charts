@@ -13,9 +13,7 @@ metadata:
   name: {{ template "cp-kafka.fullname" $root }}-{{ $i }}-nodeport
   {{- if .Values.nodeport.serviceAnnotations }}
   annotations:
-  {{- range $key, $value := .Values.nodeport.serviceAnnotations }}
-    {{ $key }}: "{{ $value }}"
-  {{- end }}
+{{ toYaml .Values.nodeport.serviceAnnotations | indent 4 }}
   {{- end }}
   labels:
     app: {{ include "cp-kafka.name" $root }}
